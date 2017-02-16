@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        Hello from Vue!
-    </body>
-    <script src="src/libs/vue.js"></script>
-    <script src="src/index.js"></script>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id='app-1'>
+        <h1>Hello from Vue.js!</h1>
+        <div v-bind:title="message">
+            Подержи курсор надо мной пару секунд, чтобы увидеть динамически связанное значение title!
+        </div>
+    </div>
+    <div id='app-2'>
+        <p v-if="seen">Сейчас меня видно!</p>
+    </div>
+    <div id='app-3'>
+        <input type="text" name="todo" v-model="todo">
+        <button type="button" v-on:click='AddTodo'>Добавить</button>
+        <ul>
+            <li v-for="(todo, index) in todos">
+                <span>{{index+1}} - {{ todo.text}}</span> <b v-bind:data-el="index" v-on:click='RemoveTodo'>X</b>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="src/libs/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+<script src="src/index.js"></script>
+
 </html>
