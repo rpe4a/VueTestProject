@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+</head>
+
+<body class='container'>
+    <div id='app-1'>
+        <h1>Hello from Vue.js!</h1>
+        <div :title="message">
+            <p>{{ message }}</p>
+            <p>{{ reversedMessage }}</p>
+        </div>
+    </div>
+    <div id='app-2'>
+        <p v-if="seen">Сейчас меня видно!</p>
+    </div>
+    <div id='app-3' class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 form-inline">
+                    <input type="text" class="form-control" name="todo" v-model.lazy="todo" @keyup.delete='todo = ""' @keyup.enter='AddTodo'>
+                    <button type="button" class="btn btn-default" @click.prevent='AddTodo'>Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item " v-for="(todo, index) in todos" @click='RemoveTodo(index, $event)'>
+                            <span>{{ todo.text | toUpper | toLower }}</span> <b :data-el="index" @click='RemoveTodo(index, $event)'>X</b>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="app-5">
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:todo='item'></todo-item>
+        </ol>
+    </div>
+    <div id='watch-example'>
+        <p>
+            Задайте вопрос, на который можно ответить "да" или "нет":
+            <input v-model="question">
+        </p>
+        <p :class="{'text-danger': hasError}">{{ answer }}</p>
+        <img v-show="image.length > 0" :src="image">
+    </div>
+</body>
+<script src="src/libs/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="src/index.js"></script>
+
+</html>
