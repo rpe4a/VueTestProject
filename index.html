@@ -49,10 +49,10 @@
     </div>-->
     <div id='app4' class="container margin-1-t">
         <tabs class="margin-2-b">
-            <tab name="Home" >
+            <tab name="Home">
                 <h2>Here is content for Home</h2>
             </tab>
-            <tab name="Profile" >
+            <tab name="Profile">
                 <h2>Here is content for Profile</h2>
             </tab>
             <tab name="Messagine" selected='true'>
@@ -70,6 +70,9 @@
         <task-list></task-list>
         <modal></modal>
         <button data-toggle='modal' data-target="#bs-example-modal-sm">Show modal</button>
+    </div>
+    <div class="container" id="app5">
+        <coupon @applied='onCouponeApplied'></coupon>
     </div>
     <script src="src/libs/vue.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
