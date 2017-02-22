@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-size: 16px;">
 
 <head>
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
 </head>
 
 <body>
-    <div id='app'>
+    <style>
+        .is-loading {
+            background: red;
+        }
+        
+        .margin-1-t {
+            margin-top: 1rem;
+        }
+        
+        .margin-2-b {
+            margin-bottom: 2rem;
+        }
+    </style>
+    <!--<div id='app'>
         <ul style="list-style: none">
             <li v-for="(name, index) in names">
                 {{index + 1 }}) {{name}} <b @click='names.splice(index, 1)'>X</b>
@@ -17,7 +34,48 @@
         <input v-model='name'>
         <button @click='AddName'>Add Name</button>
     </div>
+    <div id='app2' style="margin-top: 1rem;">
+        <button :class="{'is-loading': isLoading}" @click="toogleClass">Hover Over Me</button>
+    </div>
+    <div id='app3'>
+        <h2>All tasks:</h2>
+        <ul>
+            <li v-for='task in tasks' v-text='task.description'></li>
+        </ul>
+        <h2>Incomplete tasks:</h2>
+        <ul>
+            <li v-for='task in incompleteTasks' v-text='task.description'></li>
+        </ul>
+    </div>-->
+    <div id='app4' class="container margin-1-t">
+        <tabs class="margin-2-b">
+            <tab name="Home" >
+                <h2>Here is content for Home</h2>
+            </tab>
+            <tab name="Profile" >
+                <h2>Here is content for Profile</h2>
+            </tab>
+            <tab name="Messagine" selected='true'>
+                <h2>Here is content for Messagine</h2>
+            </tab>
+            <tab name="Settings">
+                <h2>Here is content for Settings</h2>
+            </tab>
+            <tab name="Development">
+                <h2>Here is content for Development</h2>
+            </tab>
+        </tabs>
+        <message title='Hellow world' body='Lorem ipsim dolar sit amet.'></message>
+        <message title='Hellow Univers' body='Bla bla bla.'></message>
+        <task-list></task-list>
+        <modal></modal>
+        <button data-toggle='modal' data-target="#bs-example-modal-sm">Show modal</button>
+    </div>
     <script src="src/libs/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <script src="src/index.js"></script>
 </body>
 
