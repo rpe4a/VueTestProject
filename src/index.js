@@ -136,14 +136,15 @@ Vue.component('modal', {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Название модали</h4>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <slot name='header'></slot>
+                        </h4>
                     </div>
                     <div class="modal-body">
-                        Lorem
+                        <slot></slot>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Сохранить изменения</button>
+                        <slot name='footer'></slot>
                     </div>
                 </div>
             </div>
@@ -217,14 +218,35 @@ Vue.component('tab', {
 })
 
 var app4 = new Vue({
-    el: '#app4'
+    el: '#app4',
+    data:{
+        header: "Заголовок!!!"
+    }
 })
 
 
 Vue.component('coupon', {
-    template: 
+    template: `
+        <input class='form-control' v-model="coupon" type='text' placeholder='Enter your code' @blur='onCouponeApplied' />
+    `,
+    data: function () {
+        return {
+            coupon: ''
+        }
+    },
+
+    methods: {
+        onCouponeApplied: function () {
+            this.$emit('applied', this.coupon)
+        }
+    }
 })
 
 var app5 = new Vue({
-    el: '#app5'
+    el: '#app5',
+    methods: {
+        onCouponeApplied: function (coupon) {
+            alert(coupon)
+        }
+    }
 })

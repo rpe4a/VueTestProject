@@ -68,10 +68,17 @@
         <message title='Hellow world' body='Lorem ipsim dolar sit amet.'></message>
         <message title='Hellow Univers' body='Bla bla bla.'></message>
         <task-list></task-list>
-        <modal></modal>
+        <modal>
+            <template slot='header'>{{header}}</template>
+            Bla-Bla-Bla
+            <template slot='footer'>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Сохранить</button>
+            </template>
+        </modal>
         <button data-toggle='modal' data-target="#bs-example-modal-sm">Show modal</button>
     </div>
-    <div class="container" id="app5">
+    <div class="container margin-1-t" id="app5">
         <coupon @applied='onCouponeApplied'></coupon>
     </div>
     <script src="src/libs/vue.js"></script>
