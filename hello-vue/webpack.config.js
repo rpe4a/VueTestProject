@@ -2,15 +2,23 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: ["babel-polyfill", './src/main.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  resolve: {
+    modules: ["node_modules"],
+    extensions: ['', ".scss", ".js"],
+    alias: {
+      'bootstrap-sass$': "bootstrap-sass/assets/stylesheets/bootstrap",
+      'bootstrap-js$': "bootstrap-sass/assets/javascripts/bootstrap",
+      'font-awesome$': 'font-awesome/sccs/font-awesome',
+    }
+  },
   module: {
-    rules: [
-      {
+    rules: [{
         enforce: 'pre',
         test: /.vue$/,
         loader: 'eslint-loader',
@@ -46,12 +54,19 @@ module.exports = {
         }]
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
         }
-      }
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$|\.woff2(\?v=\d+\.\d+\.\d+)?$|\.ttf(\?v=\d+\.\d+\.\d+)?$|\.otf(\?v=\d+\.\d+\.\d+)?$|\.eot(\?v=\d+\.\d+\.\d+)?$|\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      },
     ]
   },
   resolve: {
@@ -59,6 +74,13 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      '': "jquery",
+      "jQuery": "jquery",
+      'window.jQuery': "jquery",
+    }),
+  ],
   devServer: {
     historyApiFallback: true,
     noInfo: true
