@@ -1,61 +1,51 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{msg}}</h1> 
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div id="app" class="container padding-t-2 padding-b-2">
+    <template v-if='users.length > 0'>
+      <message v-for='user in users'>
+        <template slot='header'>{{user.title}}</template>
+        {{user.body}}
+        <template slot='footer'>Написал: {{user.userId}} в {{new Date()}}</template>
+      </message>
+    </template>
+    <template v-else>
+      <p>
+        <i class="fa fa-spin fa-spinner fa-lg"></i><span> Загрузка данных...</span>
+      </p>
+    </template>
+    <projectform></projectform>
+    <counter></counter>
   </div>
 </template>
 
 <script>
+  import Message from './components/Message.vue';
+  import Counter from './components/Counter.vue';
+  import Projectform from './components/Projectform.vue';
+  import axios from 'axios'
+  import { take } from 'lodash'
 
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  export default {
+    name: 'app',
+    components: {
+      Message,
+      Counter,
+      Projectform
+    },
+    data() {
+      return {
+        users: []
+      }
+    },
+    mounted() {
+      axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => {
+          this.users = take(response.data, 3);
+        })
     }
   }
-}
+
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
