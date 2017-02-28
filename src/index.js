@@ -143,7 +143,7 @@ Vue.component('modal', {
                     <div class="modal-body">
                         <slot></slot>
                     </div>
-                    <div class="modal-footer">
+                    <div class = "modal-footer">
                         <slot name='footer'></slot>
                     </div>
                 </div>
@@ -219,7 +219,7 @@ Vue.component('tab', {
 
 var app4 = new Vue({
     el: '#app4',
-    data:{
+    data: {
         header: "Заголовок!!!"
     }
 })
