@@ -1,5 +1,5 @@
 import validator from 'validator';
-import isEmpty from 'lodash/isEmpty';
+/*import isEmpty from 'lodash/isEmpty';*/
 
 export default function (fields) {
     let errors = {};
@@ -9,9 +9,17 @@ export default function (fields) {
     if (validator.isEmpty(fields.description))
         errors.description = 'Поле Описание - не заполнено'
 
-    return {
-        errors,
-        isValid: isEmpty(errors)
-    }
+    return errors;
+    /*return new Promise((resolve, reject) => {
+        if (isEmpty(errors))
+            resolve()
+        else
+            reject(errors)
+    })*/
+
+    /*  return {
+          errors,
+          isValid: isEmpty(errors)
+      }*/
 
 }
