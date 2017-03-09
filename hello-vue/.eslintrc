@@ -62,7 +62,7 @@
         "no-with": 2,
         "array-bracket-spacing": 1,
         "block-spacing": 1,
-        "brace-style": [1, "stroustrup"],
+        "brace-style": [1, "1tbs"],
         "comma-spacing": 1,
         "comma-style": 1,
         "semi-spacing": 1,

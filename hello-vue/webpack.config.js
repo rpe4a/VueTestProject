@@ -2,11 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: ["babel-polyfill", './src/main.js'],
+  entry: {
+      app: ["babel-polyfill", './src/main.js'],
+      vendor: ['vue', 'axios', 'lodash', 'bootstrap-sass']
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].js' //[chunkhash]
   },
   resolve: {
     modules: ["node_modules"],
@@ -38,7 +41,7 @@ module.exports = {
           // other vue-loader options go here
         }
       },
-      {
+      { 
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
@@ -80,6 +83,11 @@ module.exports = {
       "jQuery": "jquery",
       'window.jQuery': "jquery",
     }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
+    }),
+
   ],
   devServer: {
     historyApiFallback: true,
@@ -93,6 +101,7 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
+
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
