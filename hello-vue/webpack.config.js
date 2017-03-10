@@ -4,7 +4,7 @@ var webpack = require('webpack')
 module.exports = {
   entry: {
       app: ["babel-polyfill", './src/main.js'],
-      vendor: ['vue', 'axios', 'lodash', 'bootstrap-sass']
+      vendor: ['vue', 'axios', 'lodash', 'bootstrap-sass', 'moment']
   },
   output: {
     path: path.resolve(__dirname, './dist'),

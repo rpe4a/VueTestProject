@@ -4,7 +4,7 @@
       <message v-for='user in users'>
         <template slot='header'>{{user.title}}</template>
         {{user.body}}
-        <template slot='footer'>Написал: {{user.userId}} в {{new Date()}}</template>
+        <template slot='footer'>Написал: {{user.userId}} {{new Date() | postedOn}}</template>
       </message>
     </template>
     <template v-else>
@@ -23,6 +23,9 @@
   import Projectform from '../components/Projectform.vue';
   import axios from 'axios'
   import { take } from 'lodash'
+  import moment from 'moment'
+
+  moment.locale('ru')
 
   export default {
     name: 'home',
@@ -36,6 +39,16 @@
         users: []
       }
     },
+    filters:{
+      postedOn(date){
+        return moment(date).fromNow(); 
+      }
+    },
+    /*methods:{
+      postedOn(date) {
+        return moment(date).fromNow();
+      }
+    },*/
     mounted() {
       axios.get('https://jsonplaceholder.typicode.com/posts')
         .then((response) => {

@@ -1,8 +1,9 @@
 /*import isEmpty from 'lodash/isEmpty';*/
 
 export default class {
-    constructor(data) {
-        this.casualData = data;
+    constructor(data, validation) {
+        this.formData = data;
+        this.validation = validation;
         this.loading = false;
         this.errors = {};
 
@@ -13,7 +14,7 @@ export default class {
 
     reset() {
 
-        for (let prop in this.casualData) {
+        for (let prop in this.formData) {
             this[prop] = ''
         }
 
@@ -21,18 +22,28 @@ export default class {
         this.errors = {};
     }
 
-    validate(validationFunc) {
+    validate() {
         this.loading = true;
-        this.errors = validationFunc(this);
+
+        for (let prop in this.formData) {
+            let error = this.validation[prop](this[prop])
+
+            this.setError(prop, error)
+        }
 
         return new Promise((resolve, reject) => {
             if (this.hasError()) {
-                reject();
                 this.loading = false;
+                reject();
             } else {
                 resolve();
             }
         })
+    }
+
+    setError(prop, error) {
+        if (error)
+            this.errors = {...this.errors, [prop]: error};
     }
 
     hasError() {
@@ -42,7 +53,7 @@ export default class {
     data() {
         let data = {};
 
-        for (let prop in this.casualData)
+        for (let prop in this.formData)
             data[prop] = this[prop];
 
         return data;
