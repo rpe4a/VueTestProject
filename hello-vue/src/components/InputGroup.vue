@@ -43,3 +43,8 @@
     }
 
 </script>
+<style lang="scss">
+    input {
+        background-color: red;
+    }
+</style>
