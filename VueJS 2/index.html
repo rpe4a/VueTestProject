@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vue</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+</head>
+
+<body class="container">
+    <div id='app'>
+        <i>{{seconds}}</i>
+    </div>
+    <div id='app2'>
+        <input type="checkbox" v-model='success'>
+        <input type="text" v-model='message'>
+        <p class="alert" :class='cls'>{{message}}</p>
+    </div>
+    <div id='app3'>
+        <p>FirstName: {{firstname}}</p>
+        <p>LastName: {{lastname}}</p>
+        <p>FullName: <input type="text" v-model="fullname"></p>
+    </div>
+    <div id='app4'>
+        <p>Message: {{message | capitalize | reverse | presuffix('***', '***')}}</p>
+    </div>
+    <div id='app5'>
+        <form-user v-model='user'>
+            <div slot="header">Unpkg.com предоставляет CDN-ссылки на содержимое NPM-пакетов. Приведённая выше ссылка всегда будет указывать на самый свежий
+            релиз Vuex, доступный в NPM. Кроме того, можно указать конкретную версию или тег, например https://unpkg.com/vuex@2.0.0.</div>
+            <div slot="footer">Unpkg.com предоставляет CDN-ссылки на содержимое NPM-пакетов. Приведённая выше ссылка всегда будет указывать на самый свежий
+            релиз Vuex, доступный в NPM. Кроме того, можно указать конкретную версию или тег, например https://unpkg.com/vuex@2.0.0.</div>
+        </form-user>
+        <br>
+        <pre>
+            {{user}}
+        </pre>
+        <p></p>
+        <message type="alert-warning" :message='message' v-if='alert' @close='hide'></message>
+        <button @click='show' v-else='alert'>Show Alert</button>
+        <counter></counter>
+        <counter :start='3'></counter>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@2.2.2"></script>
+<script src="src/app.js"></script>
+
+</html>
