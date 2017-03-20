@@ -109,7 +109,7 @@ if (process.env.NODE_ENV === 'development') {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
-
+  module.exports.output.publicPath = '',
   module.exports.module.rules.push({
     test: /\.scss$/,
     use: ExtractTextPlugin.extract({
@@ -134,6 +134,8 @@ if (process.env.NODE_ENV === 'production') {
             ]
           }
         }
+      }, {
+        loader: 'resolve-url-loader'
       }, {
         loader: "sass-loader", // compiles Sass to CSS
         options: {

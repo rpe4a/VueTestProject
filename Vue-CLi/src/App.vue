@@ -1,28 +1,27 @@
 <template>
   <div id="app"
-       class="container padding-t-2 padding-b-2">
-    <counter></counter>
-    <counter></counter>
-    <counter></counter>
-    <counter></counter>
-    <counter></counter>
-    
+       class="container">
+    <div class='row'>
+      <div class='col-md-4'>
+        <navigation></navigation>
+      </div>
+      <div class="col-md-8">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Counter from './components/Counter.vue'
+import Navigation from './components/Navigation.vue'
 
 export default {
   name: 'app',
   components: {
-    Counter
+    Navigation
   }
 }
 
 </script>
 
-<style lang="scss">
-
-</style>
 
