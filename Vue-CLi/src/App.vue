@@ -14,9 +14,11 @@
 
 <script>
 import Navigation from './components/Navigation.vue'
+import store from './ModuleStore'
 
 export default {
   name: 'app',
+  store,
   components: {
     Navigation
   }
