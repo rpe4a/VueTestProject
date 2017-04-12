@@ -4,8 +4,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: {
-    app: ["babel-polyfill", './src/main.js'],
-    vendor: ['vue', 'vue-router', 'axios', 'lodash', 'bootstrap-sass', 'moment', 'validator']
+    app: ['babel-polyfill', './src/main.js'],
+    vendor: ['vue', 'vue-router', 'vuex', 'axios', 'lodash', 'bootstrap-sass', 'moment', 'validator']
   },
   output: {
     path: path.resolve(__dirname, './dist'),
