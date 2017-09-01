@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vue</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app" :title="message">
+        <input type="text" name="text" v-model="message">
+        <button @click="changeClick">Counting</button>
+        <button @click="showHide">Show/Hide</button>
+        <p>{{message}}</p>
+        <p><span>Counter: </span>{{counter}}</p>
+        <p><span>Click: </span>{{click}}</p>
+        <hr>
+        <p v-if="show">I'm visible</p>
+        <p v-else>I'm Now visible</p>
+        <p v-show="show">I'm display:block visible</p>
+        <ul>
+            <li v-for="person in family" v-if="person.show">{{person.person}}</li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="index.js"></script>
+
+
+</body>
+
+</html>

@@ -1,8 +1,8 @@
 <template>
     <div class='row'>
         <form class="col-md-6" @submit.prevent='onSubmit' @keydown='delete form.errors[$event.target.name]'>
-                <textareagroup @onvalid='onValidationError' label='Имя' name='name' v-model='form.name' placeholder='Введите ваше имя' :validate='this.form.validation.name' :error='form.errors.name'></textareagroup>
-                <textareagroup @onvalid='onValidationError' label='You status is:' name='body' v-model='form.body' placeholder='Typing something' :validate='this.form.validation.body' :error='form.errors.body'></textareagroup>
+                <textareagroup @onvalid='onValidationError' label='Имя' name='name' v-model.trim='form.name' placeholder='Введите ваше имя' :validate='this.form.validation.name' :error='form.errors.name'></textareagroup>
+                <textareagroup @onvalid='onValidationError' label='You status is:' name='body' v-model.trim='form.body' placeholder='Typing something' :validate='this.form.validation.body' :error='form.errors.body'></textareagroup>
                 <formbutton type='submit' class="btn-default" :disabled='form.hasError()' :loading='form.loading' >Поставить статус</formbutton>
         </form>
     </div>

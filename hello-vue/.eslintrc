@@ -81,7 +81,7 @@
         "eol-last": 0,
         "template-tag-spacing": ["error", "always"],
         "semi": 0,
-        "quotes": [2, "single"],
+        "quotes": [1, "single"],
         "jsx-quotes": [1, "prefer-single"],
         "no-unused-vars": 1
     }

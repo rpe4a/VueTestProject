@@ -2,46 +2,47 @@
     <form id='projectform' @submit.prevent='onSubmit' @keydown='delete form.errors[$event.target.name]'>
         <InputGroup label='Имя' name="name" v-model='form.name' :error='form.errors.name' placeholder='Введите ваше имя'></InputGroup>
         <InputGroup label='О себе' name="description" v-model='form.description' :error='form.errors.description' placeholder='Напиши те что-нибудь'></InputGroup>
-        <button type="submit" class="btn btn-default" :disabled='form.hasError()'><i class='fa fa-spinner fa-spin ' v-show='form.loading'></i> Отправить</button>
+        <button type="submit" class="btn btn-default" :disabled='form.hasError()'>
+            <i class='fa fa-spinner fa-spin ' v-show='form.loading'></i> Отправить</button>
     </form>
 </template>
 
 <script>
-    import ValidateForm from '../utils/ValidateForm.js'
-    import Form from '../utils/Form.js'
-    import InputGroup from './InputGroup.vue'
+import ValidateForm from '../utils/ValidateForm.js'
+import Form from '../utils/Form.js'
+import InputGroup from './InputGroup.vue'
 
-    export default {
-        name: 'projectform',
-        components: {
-            InputGroup
-        },
-        data() {
-            return {
-                form: new Form({
-                    name: '',
-                    description: '',
-                })
-            }
-        },
-
-        methods: {
-            onSubmit() {
-                this.form.validate(ValidateForm)
-                    .then(() => {
-                        setTimeout(() => {
-                            console.log(this.form.data())
-                            this.form.reset()
-                        }, 1000)
-                    })
-                    .catch(() => {
-                        /*this.form.errors = errors;*/
-                        /*this.form.loading = false;*/
-                    })
-            },
+export default {
+    name: 'projectform',
+    components: {
+        InputGroup
+    },
+    data() {
+        return {
+            form: new Form({
+                name: '',
+                description: '',
+            })
         }
+    },
 
+    methods: {
+        onSubmit() {
+            this.form.validate(ValidateForm)
+                .then(() => {
+                    setTimeout(() => {
+                        console.log(this.form.data())
+                        this.form.reset()
+                    }, 1000)
+                })
+                .catch(() => {
+                    /*this.form.errors = errors;*/
+                    /*this.form.loading = false;*/
+                })
+        },
     }
+
+}
 /*
 <div class="form-group" :class="{'has-feedback has-error': errors.name}">
             <label class='control-label' for="name">Имя</label>
